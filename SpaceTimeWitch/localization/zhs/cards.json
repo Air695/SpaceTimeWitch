@@ -72,7 +72,7 @@
     "SPACE_TIME_WITCH_CARD_CHRONO_FLOW.title":  "流转",
     "SPACE_TIME_WITCH_CARD_CHRONO_FLUX.description":  "失去{HpLoss}点生命值，抽{Cards}张牌，这张牌回到你的手牌。",
     "SPACE_TIME_WITCH_CARD_CHRONO_FLUX.title":  "涨落",
-    "SPACE_TIME_WITCH_CARD_CHRONO_FORESIGHT.description":  "在你的下回合开始时，预见{STWForesight}，抽{DrawCardsNextTurnPower}张牌{IfUpgraded:show:，刻下{NChronoMark}道[gold]时痕[/gold]|}。",
+    "SPACE_TIME_WITCH_CARD_CHRONO_FORESIGHT.description":  "在你的下回合开始时，预见{STWForesight}，抽{STWNextTurnDraw}张牌{IfUpgraded:show:，刻下{NChronoMark}道[gold]时痕[/gold]|}。",
     "SPACE_TIME_WITCH_CARD_CHRONO_FORESIGHT.title":  "时空预示",
     "SPACE_TIME_WITCH_CARD_CHRONO_GAP.description":  "每回合开始时，使所有玩家从链接时空[gold]复现[/gold]一张牌。",
     "SPACE_TIME_WITCH_CARD_CHRONO_GAP.title":  "次元间隙",
