@@ -11,6 +11,81 @@ using SpaceTimeWitch.Scripts;
 namespace SpaceTimeWitch.Relics;
 
 /// <summary>
+/// 标签遗物配置 —— 从 SpaceTimeWitchSettings 读取运行时配置，未配置则回退到注册表默认值。
+/// 配置页（NTagRelicPoolSettingsControl）在保存时调用 SpaceTimeWitchSettings.SyncTagRelicFrom() 同步到此。
+/// </summary>
+public static class TagRelicConfig
+{
+    /// <summary>获取卡池组的有效权重（0–5）。</summary>
+    public static double GetEffectiveGroupWeight(string group) =>
+        SpaceTimeWitchSettings.TagRelicGroupWeights.TryGetValue(group, out var w)
+            ? w
+            : TagRelicRegistry.GroupWeights.GetValueOrDefault(group, 1.0);
+
+    /// <summary>获取遗物出现权重（0–5）。Key 为遗物类型名。</summary>
+    public static double GetEffectiveRelicWeight(Type relicType) =>
+        SpaceTimeWitchSettings.TagRelicWeights.TryGetValue(relicType.Name, out var w)
+            ? w
+            : (TagRelicRegistry.Entries.TryGetValue(relicType, out var data) ? data.Weight : 1.0);
+
+    /// <summary>获取升级分支权重（0–5）。Key 格式 "父类型名:子类型名"。</summary>
+    public static double GetEffectiveBranchWeight(Type parent, Type child)
+    {
+        var key = $"{parent.Name}:{child.Name}";
+        if (SpaceTimeWitchSettings.TagRelicBranchWeights.TryGetValue(key, out var w))
+            return w;
+        if (TagRelicRegistry.Entries.TryGetValue(parent, out var data)
+            && data.NextTierWeights != null
+            && data.NextTierWeights.TryGetValue(child, out var dw))
+            return dw;
+        return 1.0;
+    }
+
+    /// <summary>获取指定 class 的去重开关。</summary>
+    public static bool IsClassLimited(string className) =>
+        SpaceTimeWitchSettings.TagRelicClassDedup.TryGetValue(className, out var enabled)
+            ? enabled
+            : TagRelicRegistry.LimitedClasses.Contains(className);
+
+    /// <summary>获取组去重开关。</summary>
+    public static bool IsGroupDedupEnabled(string group) =>
+        SpaceTimeWitchSettings.TagRelicGroupDedup.TryGetValue(group, out var enabled) && enabled;
+
+    /// <summary>获取所有启用了去重的 class 集合，供运行时快速查找。</summary>
+    public static HashSet<string> GetActiveLimitedClasses()
+    {
+        var set = new HashSet<string>();
+        // 从设置中收集启用的
+        foreach (var (className, enabled) in SpaceTimeWitchSettings.TagRelicClassDedup)
+            if (enabled) set.Add(className);
+        // 回退到注册表默认（设置中不存在的 key）
+        foreach (var className in TagRelicRegistry.LimitedClasses)
+            if (!SpaceTimeWitchSettings.TagRelicClassDedup.ContainsKey(className))
+                set.Add(className);
+        return set;
+    }
+
+    /// <summary>获取指定组的有效 NextTierWeights（融合设置覆盖与注册表默认）。</summary>
+    public static Dictionary<Type, double> GetEffectiveNextTierWeights(Type relicType)
+    {
+        if (!TagRelicRegistry.Entries.TryGetValue(relicType, out var data))
+            return [];
+        var result = new Dictionary<Type, double>();
+        if (data.NextTierWeights != null)
+        {
+            foreach (var (childType, defaultWeight) in data.NextTierWeights)
+            {
+                var key = $"{relicType.Name}:{childType.Name}";
+                result[childType] = SpaceTimeWitchSettings.TagRelicBranchWeights.TryGetValue(key, out var w)
+                    ? w
+                    : defaultWeight;
+            }
+        }
+        return result;
+    }
+}
+
+/// <summary>
 /// 标签遗物元数据，集中定义所有 TagRelic 的 CardTag、角色组、等级、子分类、下一级、权重。
 /// 新增标签遗物时在此添加一行即可，无需在每个遗物类中写构造函数。
 /// </summary>
@@ -34,9 +109,7 @@ public static class TagRelicRegistry
         new Dictionary<Type, TagRelicData>
         {
             [typeof(ERZ1)] = new(CardTags.ERZ1, "EldenRing", 1, "Adaptive",
-                NextTierWeights: new Dictionary<Type, double> {
-                    [typeof(ERZ2)] = 1.0,
-                }),
+                NextTierTypes: [typeof(ERZ2)]),
             [typeof(ERZ2)] = new(CardTags.ERZ2, "EldenRing", 2, "Adaptive", [typeof(ERZ3)]),
             [typeof(ERZ3)] = new(CardTags.ERZ3, "EldenRing", 3, "Adaptive"),
             [typeof(DCB1)] = new(CardTags.DCB1, "DevilMayCry", 1, "Attack", [typeof(DCB2)]),
@@ -101,6 +174,7 @@ public interface ITagRelic
 /// <summary>
 /// 标签遗物抽象基类。子类无需构造函数，元数据在 <see cref="TagRelicRegistry"/> 中集中定义。
 /// 示例: public class STWRF1 : TagRelic { /* 遗物效果 */ }
+/// 权重和分支权重会先查配置（TagRelicConfig），未配置则回退到注册表默认值。
 /// </summary>
 public abstract class TagRelic() : SpaceTimeWitchRelics(RelicRarity.Event), ITagRelic
 {
@@ -112,6 +186,11 @@ public abstract class TagRelic() : SpaceTimeWitchRelics(RelicRarity.Event), ITag
     public string Class => Data.Class;
     public int Tier => Data.Tier;
     public IReadOnlyList<Type> NextTierRelicTypes => Data.NextTierTypes ?? [];
-    public double Weight => Data.Weight;
-    public IReadOnlyDictionary<Type, double> NextTierWeights => Data.NextTierWeights ?? new Dictionary<Type, double>();
+
+    /// <summary>出现权重：先查配置，未配置则回退到注册表默认。</summary>
+    public double Weight => TagRelicConfig.GetEffectiveRelicWeight(GetType());
+
+    /// <summary>升级分支权重：先查配置，未配置则回退到注册表默认。</summary>
+    public IReadOnlyDictionary<Type, double> NextTierWeights =>
+        TagRelicConfig.GetEffectiveNextTierWeights(GetType());
 }

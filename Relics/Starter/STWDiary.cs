@@ -55,11 +55,11 @@ public class STWDiary : SpaceTimeWitchRelics
 
         var rng = Owner.RunState.Rng.UpFront;
 
-        // 已拥有的受限 class，避免选取同 class 遗物
+        // 已拥有的受限 class，避免选取同 class 遗物（读取配置中的去重开关）
         var ownedLimitedClasses = Owner.Relics
             .OfType<ITagRelic>()
             .Select(r => r.Class)
-            .Where(c => TagRelicRegistry.LimitedClasses.Contains(c))
+            .Where(c => TagRelicConfig.IsClassLimited(c))
             .ToHashSet();
 
         // 用于避免重复抽取同一个遗物类型
@@ -78,9 +78,9 @@ public class STWDiary : SpaceTimeWitchRelics
 
             if (candidates.Count == 0) break;
 
-            // 按角色组权重选取一个组
+            // 按角色组权重选取一个组（读取配置中的组权重）
             var group = TagRelicRegistry.WeightedPick(candidates,
-                g => TagRelicRegistry.GroupWeights.TryGetValue(g.Key, out var w) ? w : 1.0,
+                g => TagRelicConfig.GetEffectiveGroupWeight(g.Key),
                 rng);
             if (group == null) continue;
 
@@ -96,7 +96,7 @@ public class STWDiary : SpaceTimeWitchRelics
             pickedRelicIds.Add(((RelicModel)picked).Id);
 
             // 如果该遗物 class 是受限类型，也加入排除列表
-            if (TagRelicRegistry.LimitedClasses.Contains(picked.Class))
+            if (TagRelicConfig.IsClassLimited(picked.Class))
                 ownedLimitedClasses.Add(picked.Class);
         }
     }
@@ -109,7 +109,7 @@ public class STWDiary : SpaceTimeWitchRelics
         var ownedLimitedClasses = Owner.Relics
             .OfType<ITagRelic>()
             .Select(r => r.Class)
-            .Where(c => TagRelicRegistry.LimitedClasses.Contains(c))
+            .Where(c => TagRelicConfig.IsClassLimited(c))
             .ToHashSet();
 
         foreach (var relic in tagRelics)

@@ -11,9 +11,9 @@ namespace SpaceTimeWitch.Commands;
 
 public static class WeightedCardSelectCmd
 {
-    public const double DefaultCommonWeight = 0.50;
-    public const double DefaultUncommonWeight = 0.35;
-    public const double DefaultRareWeight = 0.15;
+    public const double DefaultCommonWeight = 0.60;
+    public const double DefaultUncommonWeight = 0.30;
+    public const double DefaultRareWeight = 0.10;
 
     /// <summary>
     /// 从 SpaceTimeWitchSettings 读取玩家配置的稀有度权重（0-1 范围）。

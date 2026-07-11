@@ -6,9 +6,9 @@ public static class SpaceTimeWitchSettings
     // UI 由 NProbabilitySettingsControl（AddCustom）负责。
     // 以下静态属性供 WeightedCardSelectCmd 等运行时代码读取。
 
-    public const int DefaultCommonWeight = 50;
-    public const int DefaultUncommonWeight = 35;
-    public const int DefaultRareWeight = 15;
+    public const int DefaultCommonWeight = 60;
+    public const int DefaultUncommonWeight = 30;
+    public const int DefaultRareWeight = 10;
 
     // ==================== 复现配置 ====================
     public const int DefaultDiscoverOfferCount = 5;
@@ -49,5 +49,42 @@ public static class SpaceTimeWitchSettings
             UncommonWeight / 100.0,
             RareWeight / 100.0
         );
+    }
+
+    // ==================== 链接时空卡池配置 ====================
+    // 以下字典由 NTagRelicPoolSettingsControl 在保存时同步，供 TagRelicRegistry 运行时读取。
+
+    public static Dictionary<string, int> TagRelicGroupWeights { get; private set; } = new()
+    {
+        ["EldenRing"] = 1, ["DevilMayCry"] = 1, ["MineCraft"] = 1, ["LibraryOfRuina"] = 1,
+    };
+
+    public static Dictionary<string, bool> TagRelicGroupDedup { get; private set; } = new()
+    {
+        ["EldenRing"] = false, ["DevilMayCry"] = false, ["MineCraft"] = false, ["LibraryOfRuina"] = false,
+    };
+
+    public static Dictionary<string, int> TagRelicWeights { get; private set; } = [];
+
+    public static Dictionary<string, int> TagRelicBranchWeights { get; private set; } = [];
+
+    public static Dictionary<string, bool> TagRelicClassDedup { get; private set; } = new()
+    {
+        ["Attack"] = true, ["Debuff"] = true, ["Adaptive"] = true, ["Pickaxe"] = true,
+    };
+
+    /// <summary>由 NTagRelicPoolSettingsControl 调用，将 UI 变动同步到静态属性。</summary>
+    public static void SyncTagRelicFrom(
+        Dictionary<string, int> groupWeights,
+        Dictionary<string, bool> groupDedup,
+        Dictionary<string, int> weights,
+        Dictionary<string, int> branchWeights,
+        Dictionary<string, bool> classDedup)
+    {
+        TagRelicGroupWeights = new Dictionary<string, int>(groupWeights);
+        TagRelicGroupDedup = new Dictionary<string, bool>(groupDedup);
+        TagRelicWeights = new Dictionary<string, int>(weights);
+        TagRelicBranchWeights = new Dictionary<string, int>(branchWeights);
+        TagRelicClassDedup = new Dictionary<string, bool>(classDedup);
     }
 }

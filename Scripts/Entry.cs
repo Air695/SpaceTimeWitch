@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -162,6 +163,17 @@ public class Entry
 
         SpaceTimeWitchSettings.SyncDiscoverOfferCount(discoverOfferCountBinding.Read());
 
+        // 同步 TagRelic 初始值到运行时
+        {
+            var data = rootBinding.Read();
+            SpaceTimeWitchSettings.SyncTagRelicFrom(
+                data.TagRelicGroupWeights,
+                data.TagRelicGroupDedup,
+                data.TagRelicWeights,
+                data.TagRelicBranchWeights,
+                data.TagRelicClassDedup);
+        }
+
         // 配置页
         RitsuLibFramework.RegisterModSettings(ModId, page =>
         {
@@ -208,6 +220,54 @@ public class Entry
                         return new NDiscoverOfferCountControl(
                             host, rootBinding, discoverOfferCountBinding,
                             title, reset);
+                    },
+                    ModSettingsText.Literal(""),
+                    () => true);
+            });
+
+            page.AddSection("tag_relic_pool", tagRelic =>
+            {
+                tagRelic.WithTitle(ModSettingsText.LocString(
+                    "settings_ui", "TAG_RELIC_POOL.TITLE", "链接时空卡池配置"));
+                tagRelic.AddCustom("tag_relic_pool_control",
+                    ModSettingsText.Literal(""),
+                    host =>
+                    {
+                        var text = new TagRelicPoolText
+                        {
+                            GroupWeightLabel = ModSettingsText.LocString(
+                                "settings_ui", "TAG_RELIC_POOL.GROUP_WEIGHT", "链接卡池权重").Resolve(),
+                            GroupDedupLabel = ModSettingsText.LocString(
+                                "settings_ui", "TAG_RELIC_POOL.GROUP_DEDUP", "去重（此组每次只抽一个遗物）").Resolve(),
+                            ResetAllLabel = ModSettingsText.LocString(
+                                "settings_ui", "TAG_RELIC_POOL.RESET_ALL", "重置全部为默认值").Resolve(),
+                            BranchWeightFormat = ModSettingsText.LocString(
+                                "settings_ui", "TAG_RELIC_POOL.BRANCH_WEIGHT", "{0}（升级分支权重）").Resolve(),
+                            ClassDedupTitle = ModSettingsText.LocString(
+                                "settings_ui", "TAG_RELIC_POOL.CLASS_DEDUP", "标签去重").Resolve(),
+                            ClassDedupDesc = ModSettingsText.LocString(
+                                "settings_ui", "TAG_RELIC_POOL.CLASS_DEDUP_DESC", "不会抽到重复的启用标签").Resolve(),
+                            ResetDedupLabel = ModSettingsText.LocString(
+                                "settings_ui", "TAG_RELIC_POOL.RESET_DEDUP", "重置全部去重为默认").Resolve(),
+                            ToggleOnLabel = ModSettingsText.LocString(
+                                "settings_ui", "TAG_RELIC_POOL.TOGGLE_ON", "ON").Resolve(),
+                            ToggleOffLabel = ModSettingsText.LocString(
+                                "settings_ui", "TAG_RELIC_POOL.TOGGLE_OFF", "OFF").Resolve(),
+                            RelicNameResolver = type =>
+                            {
+                                // PascalCase → UPPER_SNAKE_CASE
+                                // 先处理 aA → a_A（小写后接大写）
+                                // 再处理 ABc → A_Bc（大写后接大写+小写，即连续大写缩写后的单词边界）
+                                var snake = Regex.Replace(type.Name, "([a-z])([A-Z])", "$1_$2");
+                                snake = Regex.Replace(snake, "([A-Z])([A-Z][a-z])", "$1_$2");
+                                snake = snake.ToUpperInvariant();
+                                return ModSettingsText.LocString(
+                                    "relics",
+                                    $"SPACE_TIME_WITCH_RELIC_{snake}.title",
+                                    type.Name).Resolve();
+                            },
+                        };
+                        return new NTagRelicPoolSettingsControl(host, rootBinding, text);
                     },
                     ModSettingsText.Literal(""),
                     () => true);

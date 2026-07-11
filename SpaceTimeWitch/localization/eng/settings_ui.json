@@ -1,0 +1,21 @@
+{
+  "SETTINGS.PROBABILITY": "Probability Control",
+  "SETTINGS.LOCK_COMMON": "Lock   Common",
+  "SETTINGS.LOCK_UNCOMMON": "Lock   Uncommon",
+  "SETTINGS.LOCK_RARE": "Lock   Rare",
+  "SETTINGS.RESET_PROBABILITY": "Reset to default",
+  "SETTINGS.DISCOVER": "Discover Settings",
+  "SETTINGS.DISCOVER_OFFER_COUNT": "Offer Count",
+  "SETTINGS.RESET_DISCOVER": "Reset to default",
+
+  "TAG_RELIC_POOL.TITLE": "Linked Space-Time Card Pool Config",
+  "TAG_RELIC_POOL.GROUP_WEIGHT": "Pool Weight",
+  "TAG_RELIC_POOL.GROUP_DEDUP": "Dedup (only one relic per pick from this pool)",
+  "TAG_RELIC_POOL.RESET_ALL": "Reset to default",
+  "TAG_RELIC_POOL.BRANCH_WEIGHT": "Branch Weight",
+  "TAG_RELIC_POOL.CLASS_DEDUP": "Tag Dedup",
+  "TAG_RELIC_POOL.CLASS_DEDUP_DESC": "No duplicates of enabled tags",
+  "TAG_RELIC_POOL.RESET_DEDUP": "Reset to default",
+  "TAG_RELIC_POOL.TOGGLE_ON": "ON",
+  "TAG_RELIC_POOL.TOGGLE_OFF": "OFF"
+}

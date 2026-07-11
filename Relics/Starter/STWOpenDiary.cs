@@ -43,7 +43,7 @@ public class STWOpenDiary : SpaceTimeWitchRelics
         var tagRelics = Owner.Relics.OfType<ITagRelic>().ToList();
         var ownedLimited = Owner.Relics.OfType<ITagRelic>()
             .Select(r => r.Class)
-            .Where(c => TagRelicRegistry.LimitedClasses.Contains(c)).ToHashSet();
+            .Where(c => TagRelicConfig.IsClassLimited(c)).ToHashSet();
 
         foreach (var relic in tagRelics)
         {
