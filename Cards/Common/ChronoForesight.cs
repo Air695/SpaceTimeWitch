@@ -21,10 +21,8 @@ public class ChronoForesight : SpaceTimeWitchCards
     [
         new PowerVar<STWForesight>(3m),
         new PowerVar<NChronoMark>(2m),
-        new PowerVar<DrawCardsNextTurnPower>(2m)
+        new PowerVar<STWNextTurnDraw>(2m)
     ];
-    
-    // ChronoMark cost set via SetChronoMarkCost(1) in constructor
 
     public ChronoForesight()
         : base(
@@ -47,8 +45,8 @@ public class ChronoForesight : SpaceTimeWitchCards
         var fAmount = DynamicVars["STWForesight"].IntValue;
         await PowerCmd.Apply<STWForesight>(choiceContext, owner.Creature, fAmount,owner.Creature,this);
         
-        var dcntAmount = DynamicVars["DrawCardsNextTurnPower"].IntValue;
-        await PowerCmd.Apply<DrawCardsNextTurnPower>(choiceContext, owner.Creature, dcntAmount,owner.Creature,this);
+        var dcntAmount = DynamicVars["STWNextTurnDraw"].IntValue;
+        await PowerCmd.Apply<STWNextTurnDraw>(choiceContext, owner.Creature, dcntAmount,owner.Creature,this);
 
         var nmarkAmount = DynamicVars["NChronoMark"].IntValue;
         if (CurrentUpgradeLevel > 0)
