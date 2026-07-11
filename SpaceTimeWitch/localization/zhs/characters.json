@@ -1,0 +1,17 @@
+{
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.aromaPrinciple": "[sine][blue]鸡煲是最强的[/blue][/sine]",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.banter.alive.endTurnPing": "时间在流逝。",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.banter.dead.endTurnPing": "时间还有很多。",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.cardsModifierDescription": "时空魔女的卡牌现在会出现在奖励和商店中。",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.cardsModifierTitle": "时空魔女卡牌",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.description": "一位超越时空的存在。\n使用来自其他时空的力量来探索这座高塔。",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.eventDeathPrevention": "这具投影的力量有限。",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.goldMonologue": "[sine]那就...战个未来吧。[/sine]",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.possessiveAdjective": "她的",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.pronounObject": "她",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.pronounPossessive": "她的",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.pronounSubject": "她",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.title": "时空魔女",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.titleObject": "时空魔女",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.unlockText": "用[pink]{Prerequisite}[/pink]进行一局游戏来解锁这个角色。"
+}

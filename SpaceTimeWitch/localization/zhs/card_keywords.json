@@ -1,0 +1,22 @@
+{
+  "REPRODUCE.description": "从一定数量的卡牌中发现至多一张卡。",
+  "REPRODUCE.title": "复现",
+  "FIELD.description": "同时只能生效一个的全局效果",
+  "FIELD.title": "场地卡",
+  "LJSK.description": "会出现你当前链接的时空中的卡牌。",
+  "LJSK.title": "链接时空",
+  "FSK.description": "会出现所有卡牌。",
+  "FSK.title": "泛时空",
+  "SPACE_TIME_WITCH_KEYWORD_BINDING.description": "打出后会在下回合返回你的手牌",
+  "SPACE_TIME_WITCH_KEYWORD_BINDING.title": "绑定",
+  "SPACE_TIME_WITCH_KEYWORD_COMBAT_SKILL.title": "战技",
+  "SPACE_TIME_WITCH_KEYWORD_COMBAT_SKILL.description": "以效果为具体效果，对动作的目标执行对应动作。",
+  "SPACE_TIME_WITCH_KEYWORD_SOULBINDING.description": "打出后会返回你的手牌",
+  "SPACE_TIME_WITCH_KEYWORD_SOULBINDING.title": "灵魂绑定",
+  "WXC.description": "正面情感：打出攻击卡并造成未被格挡的攻击伤害+1，拼点成功+2，完全格挡一次攻击+1，爪牙死亡+2，敌人死亡+5。\n负面情感：受到未被格挡的攻击伤害+1，拼点失败+2，召唤物死亡+2，队友死亡+5。\n生命值会额外影响异想体抽取概率",
+  "WXC.title": "文学层",
+  "SPACE_TIME_WITCH_KEYWORD_INDIVIDUAL.description": "与目标的单段攻击数值进行比拼，胜者造成相当于差值的伤害,会触发目标的流血。",
+  "SPACE_TIME_WITCH_KEYWORD_INDIVIDUAL.title": "交锋",
+  "SPACE_TIME_WITCH_KEYWORD_SUMMATION.description": "以总攻击伤害进行比拼，胜利则造成相当于差值的伤害，不会获得情感或受到反伤。",
+  "SPACE_TIME_WITCH_KEYWORD_SUMMATION.title": "清算"
+}

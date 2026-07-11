@@ -1,0 +1,14 @@
+{
+  "SPACE_TIME_WITCH_CARDPILE_PERSONAL_SPACE.title": "个人空间",
+  "SPACE_TIME_WITCH_CARDPILE_PERSONAL_SPACE.description": "由效果存入或取出。\n点击查看其中包含的卡牌。",
+  "SPACE_TIME_WITCH_CARDPILE_PERSONAL_SPACE.empty": "个人空间是空的。",
+  "SPACE_TIME_WITCH_CARDPILE_TAG_RELIC_POOL.title": "链接时空",
+  "SPACE_TIME_WITCH_CARDPILE_TAG_RELIC_POOL.description": "当前链接的时空包含的卡牌。",
+  "SPACE_TIME_WITCH_CARDPILE_TAG_RELIC_POOL.empty": "尚未链接时空。",
+  "SPACE_TIME_WITCH_SECONDARY_RESOURCE_CHRONO_MARK.title": "时痕",
+  "SPACE_TIME_WITCH_SECONDARY_RESOURCE_CHRONO_MARK.description": "时空上的特定裂隙。",
+  "SPACE_TIME_WITCH_SECONDARY_RESOURCE_QG_POSITIVE.title": "正面情感",
+  "SPACE_TIME_WITCH_SECONDARY_RESOURCE_QG_POSITIVE.description": "提高抽到觉醒异想体书页的概率，与负面情感相加达到上限后可右键书页遗物提升情感等级。",
+  "SPACE_TIME_WITCH_SECONDARY_RESOURCE_QG_NEGATIVE.title": "负面情感",
+  "SPACE_TIME_WITCH_SECONDARY_RESOURCE_QG_NEGATIVE.description": "提高抽到崩溃异想体书页的概率，与负面情感相加达到上限后可右键书页遗物提升情感等级。"
+}

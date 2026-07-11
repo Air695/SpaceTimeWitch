@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://cck8kpvlgt3hj"]
+
+[resource]
+Color/colors/ChroniteColor = Color(0.53333336, 0.6, 0.8666667, 1)
+Color/colors/WitchFactorColor = Color(0.78039217, 0.49019608, 1, 1)
+metadata/ChroniteColor = Color(0.53333336, 0.6, 0.8666667, 1)
+metadata/WitchFactorColor = Color(0.78039217, 0.49019608, 1, 1)

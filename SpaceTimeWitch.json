@@ -1,0 +1,14 @@
+﻿{
+  "id": "SpaceTimeWitch",
+  "name": "时空魔女",
+  "author": "Airudi",
+  "description": "一位能操作一切时空的魔女，前来探索这座高塔。",
+  "version": "0.4.0",
+  "min_game_version": "0.107.1",
+  "has_pck": true,
+  "has_dll": true,
+  "dependencies": [
+    { "id": "STS2-RitsuLib", "min_version": "0.4.54" }
+  ],
+  "affects_gameplay": true
+}

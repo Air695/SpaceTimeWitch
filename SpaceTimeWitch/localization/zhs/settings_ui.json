@@ -1,0 +1,10 @@
+{
+  "SETTINGS.PROBABILITY": "复现卡牌发现概率控制",
+  "SETTINGS.LOCK_COMMON": "锁定   普通",
+  "SETTINGS.LOCK_UNCOMMON": "锁定   罕见",
+  "SETTINGS.LOCK_RARE": "锁定   稀有",
+  "SETTINGS.RESET_PROBABILITY": "重置为默认",
+  "SETTINGS.DISCOVER": "复现设置",
+  "SETTINGS.DISCOVER_OFFER_COUNT": "可选卡牌数量",
+  "SETTINGS.RESET_DISCOVER": "重置为默认"
+}
