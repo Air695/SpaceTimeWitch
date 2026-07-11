@@ -1,2 +1,9 @@
 # Normalize EOL for all files that Git considers text files.
 * text=auto eol=lf
+*.png
+Resource/ binary
+images/ binary
+Scenes/ binary
+themes/ binary
+run_sync.bat binary
+sync_localization.ps1 binary
