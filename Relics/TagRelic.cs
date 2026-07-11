@@ -33,23 +33,23 @@ public static class TagRelicRegistry
     public static readonly IReadOnlyDictionary<Type, TagRelicData> Entries =
         new Dictionary<Type, TagRelicData>
         {
-            [typeof(ERZ1)] = new(CardTags.ERZ1, "EldenRing", 1, "J",
+            [typeof(ERZ1)] = new(CardTags.ERZ1, "EldenRing", 1, "Adaptive",
                 NextTierWeights: new Dictionary<Type, double> {
                     [typeof(ERZ2)] = 1.0,
                 }),
-            [typeof(ERZ2)] = new(CardTags.ERZ2, "EldenRing", 2, "J", [typeof(ERZ3)]),
-            [typeof(ERZ3)] = new(CardTags.ERZ3, "EldenRing", 3, "J"),
-            [typeof(DCB1)] = new(CardTags.DCB1, "DevilMayCry", 1, "A", [typeof(DCB2)]),
-            [typeof(DCB2)] = new(CardTags.DCB2, "DevilMayCry", 2, "A", [typeof(DCB3)]),
-            [typeof(DCB3)] = new(CardTags.DCB3, "DevilMayCry", 3, "A"),
+            [typeof(ERZ2)] = new(CardTags.ERZ2, "EldenRing", 2, "Adaptive", [typeof(ERZ3)]),
+            [typeof(ERZ3)] = new(CardTags.ERZ3, "EldenRing", 3, "Adaptive"),
+            [typeof(DCB1)] = new(CardTags.DCB1, "DevilMayCry", 1, "Attack", [typeof(DCB2)]),
+            [typeof(DCB2)] = new(CardTags.DCB2, "DevilMayCry", 2, "Attack", [typeof(DCB3)]),
+            [typeof(DCB3)] = new(CardTags.DCB3, "DevilMayCry", 3, "Attack"),
             [typeof(STWWoodenPickaxe)] = new(CardTags.MCJ, "MineCraft", 1, "Pickaxe"),
             [typeof(STWStonePickaxe)] = new(CardTags.MCJ, "MineCraft", 2, "Pickaxe"),
             [typeof(STWIronPickaxe)] = new(CardTags.MCJ, "MineCraft", 3, "Pickaxe"),
             [typeof(STWDiamondPickaxe)] = new(CardTags.MCJ, "MineCraft", 4, "Pickaxe"),
             [typeof(STWNetheritePickaxe)] = new(CardTags.MCJ, "MineCraft", 5, "Pickaxe"),
-            [typeof(STWBookofPierre)] = new(CardTags.LRL1, "LibraryOfRuina", 1,"J",[typeof(STWBookofSayo)]),
-            [typeof(STWBookofSayo)] = new(CardTags.LRL2, "LibraryOfRuina", 2,"J",[typeof(STWBookofDonghwan)]),
-            [typeof(STWBookofDonghwan)] = new(CardTags.LRL3, "LibraryOfRuina", 3,"J"),
+            [typeof(STWBookofPierre)] = new(CardTags.LRL1, "LibraryOfRuina", 1,"Debuff",[typeof(STWBookofSayo)]),
+            [typeof(STWBookofSayo)] = new(CardTags.LRL2, "LibraryOfRuina", 2,"Debuff",[typeof(STWBookofDonghwan)]),
+            [typeof(STWBookofDonghwan)] = new(CardTags.LRL3, "LibraryOfRuina", 3,"Debuff"),
         };
 
     /// <summary>角色池权重（Group → 权重），默认 1。</summary>
@@ -65,7 +65,8 @@ public static class TagRelicRegistry
     /// <summary>限制 class：在此集合中的 class 至多获取 1 个遗物。</summary>
     public static readonly HashSet<string> LimitedClasses = new HashSet<string>
     {
-        "A"
+        "Attack",
+        "Debuff"
     };
 
     /// <summary>加权随机选取，总权重为 0 时返回 default。</summary>
