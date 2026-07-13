@@ -31,7 +31,7 @@
     "SPACE_TIME_WITCH_CARD_BLISTERING_BLADES3.description":  "造成{Damage:diff()}点伤害，对目标触发个人空间中的幻影剑。",
     "SPACE_TIME_WITCH_CARD_BLISTERING_BLADES3.title":  "剑刃风暴",
     "SPACE_TIME_WITCH_CARD_CHRONO_ARCHIVE.description":  "从你的手牌，抽牌堆，弃牌堆，中选择至多{Cards:diff()}张卡牌存入[blue]个人空间[/blue]。",
-    "SPACE_TIME_WITCH_CARD_CHRONO_ARCHIVE.selectionScreenPrompt":  "选择至多{Cards:diff()}张卡牌存入[blue]个人空间[/blue]。",
+    "SPACE_TIME_WITCH_CARD_CHRONO_ARCHIVE.selectionScreenPrompt":  "选择至多{Amount}张卡牌",
     "SPACE_TIME_WITCH_CARD_CHRONO_ARCHIVE.title":  "归纳",
     "SPACE_TIME_WITCH_CARD_CHRONO_BARRIER.description":  "获得{Block:diff()}格挡。",
     "SPACE_TIME_WITCH_CARD_CHRONO_BARRIER.title":  "屏障",
