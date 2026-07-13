@@ -46,6 +46,7 @@ public class STWFling : SpaceTimeWitchCards
 
         var attackCards = PersonalSpaceCmd.GetCards(owner)
             .Where(c => c.Type == CardType.Attack)
+            .OrderBy(c => c.Id)
             .ToList();
 
         if (attackCards.Count == 0) return;

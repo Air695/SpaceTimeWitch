@@ -16,7 +16,7 @@ public class STWIndulgence : SpaceTimeWitchCards
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CardsVar(3)
+        new CardsVar(2)
     ];
     
     public STWIndulgence()
@@ -42,6 +42,6 @@ public class STWIndulgence : SpaceTimeWitchCards
 
     protected override void OnUpgrade()
     {
-        RemoveKeyword(CardKeyword.Ethereal);
+        DynamicVars.Cards.UpgradeValueBy(1);
     }
 }

@@ -24,8 +24,6 @@ public class ChronoRiftMirage : SpaceTimeWitchCards
         new CardsVar(5)
     ];
 
-    // ChronoMark cost set via SetChronoMarkCost(1) in constructor
-
     public ChronoRiftMirage()
         : base(
             baseCost: 0,
@@ -48,8 +46,7 @@ public class ChronoRiftMirage : SpaceTimeWitchCards
             minCount: 0,
             maxCount: 1,
             prompt: new LocString("cards", "STW_DISCOVER_PROMPT_S"),
-            extraFilter: c =>c.Rarity<=CardRarity.Uncommon,
-            sourceIsUpgraded: IsUpgraded
+            extraFilter: IsUpgraded ? c => c.Rarity <= CardRarity.Uncommon : c => c.Rarity == CardRarity.Common
         );
 
         var card = chosen.FirstOrDefault();
@@ -60,6 +57,5 @@ public class ChronoRiftMirage : SpaceTimeWitchCards
 
     protected override void OnUpgrade()
     {
-        SetChronoMarkCost(1);
     }
 }

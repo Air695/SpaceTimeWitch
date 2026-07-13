@@ -1,0 +1,17 @@
+﻿{
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.aromaPrinciple": "[sine][blue]Defect is the strongest[/blue][/sine]",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.banter.alive.endTurnPing": "Time is passing.",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.banter.dead.endTurnPing": "There is still plenty of time.",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.cardsModifierDescription": "SpaceTimeWitch cards now appear in rewards and shops.",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.cardsModifierTitle": "SpaceTimeWitch Cards",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.description": "A being that transcends spacetime. Uses powers from other spacetimes to explore the Spire.",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.eventDeathPrevention": "This projection has limited power.",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.goldMonologue": "[sine]Then... let's fight for the future.[/sine]",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.possessiveAdjective": "her",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.pronounObject": "her",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.pronounPossessive": "her",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.pronounSubject": "she",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.title": "SpaceTimeWitch",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.titleObject": "SpaceTimeWitch",
+  "SPACE_TIME_WITCH_CHARACTER_SPACE_TIME_WITCH.unlockText": "Play a game with [pink]{Prerequisite}[/pink] to unlock this character."
+}

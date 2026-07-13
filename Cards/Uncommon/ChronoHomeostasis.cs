@@ -16,7 +16,7 @@ public class ChronoHomeostasis : SpaceTimeWitchCards
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new HealVar(6)
+        new HealVar(4)
     ];
 
     public ChronoHomeostasis()

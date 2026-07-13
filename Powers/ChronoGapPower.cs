@@ -51,13 +51,14 @@ public class ChronoGapPower : ModPowerTemplate
             .Where(c => c.CanBeGeneratedInCombat
                         && c.Tags.Any(t => allActiveTags.Contains(t)))
             .DistinctBy(c => c.Id)
+            .OrderBy(c => c.Id)
             .ToList();
 
         if (pool.Count == 0) return;
 
         // 加权随机选择 3 张候选卡
         var (cw, uw, rw) = WeightedCardSelectCmd.GetConfiguredWeights();
-        var rng = player.RunState.Rng.Niche;
+        var rng = player.RunState.Rng.CombatCardGeneration;
         var offered = WeightedCardSelectCmd.GenerateWeighted(
             player, pool, count: 3,
             commonWeight: cw, uncommonWeight: uw, rareWeight: rw, rng: rng);

@@ -56,6 +56,7 @@ public class ChronoConjure : SpaceTimeWitchCards
                         && c.Tags.Any(t => activeTags.Contains(t)))
             .GroupBy(c => c.Id)
             .Select(g => g.First())
+            .OrderBy(c => c.Id)
             .ToList();
 
         if (candidates.Count == 0) return;

@@ -17,7 +17,7 @@ public class ChronoEvolution : SpaceTimeWitchCards
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<STWEvolution>(3m)
+        new PowerVar<STWEvolution>(2m)
     ];
 
 

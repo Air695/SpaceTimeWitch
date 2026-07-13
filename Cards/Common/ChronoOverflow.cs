@@ -21,8 +21,8 @@ public class ChronoOverflow : SpaceTimeWitchCards
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new CardsVar(2),
-        SecondaryResourceVars.For("ChronoMark", ModChronoResources.Id, 4)
+        new CardsVar(1),
+        SecondaryResourceVars.For("ChronoMark", ModChronoResources.Id, 2)
     ];
 
 
@@ -59,7 +59,6 @@ public class ChronoOverflow : SpaceTimeWitchCards
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Cards.UpgradeValueBy(1);
-        DynamicVars["ChronoMark"].UpgradeValueBy(2m);
+        DynamicVars["ChronoMark"].UpgradeValueBy(1m);
     }
 }

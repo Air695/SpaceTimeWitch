@@ -18,7 +18,7 @@ public class STWMirageBlades : SpaceTimeWitchCards
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(4m,ValueProp.Unpowered)
+        new DamageVar(3m,ValueProp.Unpowered)
     ];
 
     public STWMirageBlades()

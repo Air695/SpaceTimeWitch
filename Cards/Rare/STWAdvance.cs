@@ -46,7 +46,7 @@ public class STWAdvance : SpaceTimeWitchCards
 
         await PlayerCmd.GainGold(DynamicVars.Cards.IntValue, owner);
 
-        if (owner.RunState.Rng.Niche.NextDouble() < 0.05)
+        if (owner.RunState.Rng.CombatCardGeneration.NextDouble() < 0.05)
         {
             var debt = owner.Creature.CombatState.CreateCard<Debt>(owner);
             var deckCard = owner.RunState.CloneCard(debt);

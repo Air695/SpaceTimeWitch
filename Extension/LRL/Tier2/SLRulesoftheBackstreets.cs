@@ -23,7 +23,7 @@ public class SLRulesoftheBackstreets : SpaceTimeWitchCards
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<STWBleed>(2m),
-        new CardsVar(3)
+        new CardsVar(2)
     ];
 
 

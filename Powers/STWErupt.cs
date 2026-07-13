@@ -26,7 +26,6 @@ public class STWErupt : ModPowerTemplate, ISecondaryResourceHookListener
         if (context.NewAmount >= context.OldAmount) return; // 不是消耗
         if (context.Player.Creature != Owner) return;
 
-        Flash();
         var spent = context.OldAmount - context.NewAmount;
         var totalDamage = Amount * spent;
 

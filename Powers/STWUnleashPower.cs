@@ -25,7 +25,6 @@ public class STWUnleashPower : ModPowerTemplate
         if (cardPlay.Card.Type == CardType.Attack
             && cardPlay.Card.Owner.Creature == Owner)
         {
-            Flash();
             await ChronoMark.Gain(Owner, Amount, cardPlay.Card);
         }
     }

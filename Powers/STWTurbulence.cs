@@ -43,7 +43,7 @@ public class STWTurbulence : ModPowerTemplate
     if (player == null) return;
 
     var data = GetInternalData<TrackData>();
-    var rng = player.RunState.Rng.Niche;
+    var rng = player.RunState.Rng.CombatCardGeneration;
 
     // ── 1. 清理已不在消耗堆中的卡 ──
     var exhaustPile = PileType.Exhaust.GetPile(player);
@@ -86,6 +86,7 @@ public class STWTurbulence : ModPowerTemplate
             .Where(c => c.CanBeGeneratedInCombat
                         && c.Tags.Any(t => activeTags.Contains(t)))
             .DistinctBy(c => c.Id)
+            .OrderBy(c => c.Id)
             .ToList();
 
         if (candidates.Count == 0) continue;
@@ -101,6 +102,7 @@ public class STWTurbulence : ModPowerTemplate
         // ── 5. 10% 概率：消耗堆中被此能力消耗的卡作为额外选项 ──
         var bonusPool = exhaustPile.Cards
             .Where(c => data.ConsumedIds.Contains(c.Id.GetHashCode()))
+            .OrderBy(c => c.Id)
             .ToList();
 
         CardModel? bonusCard = null;

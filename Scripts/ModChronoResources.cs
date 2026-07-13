@@ -52,7 +52,8 @@ public static class ModChronoResources
                     FontSize = 22,
                 });
                 var energyIcon = parent.GetNode<TextureRect>("%EnergyIcon");
-                ui.Position = energyIcon.Position + new Vector2(0, 70);
+                ui.Position = energyIcon.Position
+                    + new Vector2(-ui.Size.X / 3f, energyIcon.Size.Y - ui.Size.Y / 3f);
                 return ui;
             },
             ctx => ctx.Node.Refresh(ctx)

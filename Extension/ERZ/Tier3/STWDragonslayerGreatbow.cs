@@ -25,7 +25,7 @@ public class STWDragonslayerGreatbow : CombatSkillCard
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(30m, ValueProp.Move)
+        new DamageVar(28m, ValueProp.Move)
     ];
 
     public STWDragonslayerGreatbow()

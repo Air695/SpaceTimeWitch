@@ -29,7 +29,7 @@ public class SLSocialDistancing : SpaceTimeWitchCards, IAbnormalityCard
 
     public async Task ApplyEffect(PlayerChoiceContext ctx, Player player)
     {
-        await PowerCmd.Apply<DexterityPower>(ctx, player.Creature, 2, player.Creature, this);
+        await PowerCmd.Apply<DexterityPower>(ctx, player.Creature, 1, player.Creature, this);
         await PowerCmd.Apply<SLSocialDistancingP>(ctx, player.Creature, 1, player.Creature, this);
     }
 

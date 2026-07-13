@@ -52,5 +52,5 @@ public class SpiritForge2 : SpaceTimeWitchCards
         EnergyCost.UpgradeBy(-1);
     }
 
-    protected override string PortraitPath => $"res://images/Extension/Cards/{GetType().Name}.png";
+    protected override string PortraitPath => $"res://images/Extension/Cards/SpiritForge.png";
 }

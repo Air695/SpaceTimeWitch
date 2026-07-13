@@ -19,9 +19,7 @@ public static class PersonalSpaceCmd
     {
         if (player.PlayerCombatState == null) return;
 
-        await CardPileCmd.Add(card, PileType.Discard);
-        await CardPileCmd.Add(card, Entry.PersonalSpacePile, skipVisuals: true);
-        Entry.PersonalSpacePile.GetPile(player).InvokeCardAddFinished();
+        await CardPileCmd.Add(card, Entry.PersonalSpacePile);
 
         PersonalSpaceManager.BumpVersion();
     }

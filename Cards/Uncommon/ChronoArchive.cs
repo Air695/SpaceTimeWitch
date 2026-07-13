@@ -24,8 +24,6 @@ public class ChronoArchive : SpaceTimeWitchCards
         new CardsVar(3)
     ];
 
-    // ChronoMark cost set via SetChronoMarkCost(2) in constructor
-
     public ChronoArchive()
         : base(
             baseCost: 1,

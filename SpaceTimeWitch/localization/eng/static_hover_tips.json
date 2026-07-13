@@ -1,0 +1,14 @@
+﻿{
+  "SPACE_TIME_WITCH_CARDPILE_PERSONAL_SPACE.title": "Personal Space",
+  "SPACE_TIME_WITCH_CARDPILE_PERSONAL_SPACE.description": "Stored or retrieved by effects.\nClick to view cards contained within.",
+  "SPACE_TIME_WITCH_CARDPILE_PERSONAL_SPACE.empty": "Personal Space is empty.",
+  "SPACE_TIME_WITCH_CARDPILE_TAG_RELIC_POOL.title": "Linked Spacetime",
+  "SPACE_TIME_WITCH_CARDPILE_TAG_RELIC_POOL.description": "Cards contained in the currently linked spacetime.",
+  "SPACE_TIME_WITCH_CARDPILE_TAG_RELIC_POOL.empty": "No spacetime linked yet.",
+  "SPACE_TIME_WITCH_SECONDARY_RESOURCE_CHRONO_MARK.title": "Chrono Mark",
+  "SPACE_TIME_WITCH_SECONDARY_RESOURCE_CHRONO_MARK.description": "Specific rifts on spacetime.",
+  "SPACE_TIME_WITCH_SECONDARY_RESOURCE_QG_POSITIVE.title": "Positive Emotion",
+  "SPACE_TIME_WITCH_SECONDARY_RESOURCE_QG_POSITIVE.description": "Increases the chance of drawing Awakened Abnormality pages. When the total of Positive and Negative Emotion reaches the cap, right-click the page relic to increase Emotion Level.",
+  "SPACE_TIME_WITCH_SECONDARY_RESOURCE_QG_NEGATIVE.title": "Negative Emotion",
+  "SPACE_TIME_WITCH_SECONDARY_RESOURCE_QG_NEGATIVE.description": "Increases the chance of drawing Collapsed Abnormality pages. When the total of Positive and Negative Emotion reaches the cap, right-click the page relic to increase Emotion Level."
+}

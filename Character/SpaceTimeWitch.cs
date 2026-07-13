@@ -22,7 +22,7 @@ public class SpaceTimeWitch : ModCharacterTemplate<SpaceTimeWitchCardPool, Space
 	public override CharacterGender Gender => CharacterGender.Feminine;
 
 	// 初始血量和金币
-	public override int StartingHp => 80;
+	public override int StartingHp => 70;
 	public override int StartingGold => 99;
 		
 	public override bool RequiresEpochAndTimeline => false;
@@ -74,13 +74,10 @@ public class SpaceTimeWitch : ModCharacterTemplate<SpaceTimeWitchCardPool, Space
 			),
 			Multiplayer: new(
 				// 多人模式-手指。
-				// ArmPointingTexturePath: null,
-				// 多人模式剪刀石头布-石头。
-				// ArmRockTexturePath: null,
-				// 多人模式剪刀石头布-布。
-				// ArmPaperTexturePath: null,
-				// 多人模式剪刀石头布-剪刀。
-				// ArmScissorsTexturePath: null
+				ArmPointingTexturePath: "res://images/SpaceTimeWitch/UI/STWPointing.png",
+				ArmRockTexturePath: "res://images/SpaceTimeWitch/UI/STWRock.png",
+				ArmPaperTexturePath: "res://images/SpaceTimeWitch/UI/STWPaper.png",
+				ArmScissorsTexturePath: "res://images/SpaceTimeWitch/UI/STWScissors.png"
 			),
 			VanillaRelicVisualOverrides: [
 					 new (CharacterOwnedVanillaRelicModelId.YummyCookie, new("res://images/SpaceTimeWitch/Relics/yummy_cookie_spacetimewitch.png"))

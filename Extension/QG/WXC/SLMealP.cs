@@ -1,9 +1,9 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Combat.AttackHits;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -31,21 +31,20 @@ public class SLMealP : ModPowerTemplate, IAttackHitHookListener
         _healCount = 0;
     }
 
-    public Task BeforeAttackHit(AttackHitContext context) => Task.CompletedTask;
-
-    public async Task AfterAttackHit(AttackHitContext context)
+    public async Task BeforeAttackHit(AttackHitContext context)
     {
         if (context.Dealer != Owner) return;
-        if (!context.DamageProps.IsPoweredAttack()) return;
         if (_healCount >= 3) return;
 
-        // 检查是否有目标带有 STWBleed
-        var hasBleedTarget = context.Targets.Any(t =>
+        // 检查目标中是否有带 STWBleed 的
+        bool hasBleed = context.Targets.Any(t =>
             t.Powers.OfType<STWBleed>().Any(p => p.Amount > 0));
 
-        if (!hasBleedTarget) return;
+        if (!hasBleed) return;
 
         _healCount++;
         await CreatureCmd.Heal(Owner, 1);
     }
+
+    public Task AfterAttackHit(AttackHitContext context) => Task.CompletedTask;
 }

@@ -22,7 +22,6 @@ public class ChronoLink : SpaceTimeWitchCards
         new CardsVar(5)
     ];
 
-    // ChronoMark cost set via SetChronoMarkCost(1) in constructor
 
     public ChronoLink()
         : base(
@@ -46,8 +45,7 @@ public class ChronoLink : SpaceTimeWitchCards
             minCount: 0,
             maxCount: 1,
             prompt: new LocString("cards", "STW_DISCOVER_PROMPT"),
-            extraFilter: c =>true,
-            sourceIsUpgraded: IsUpgraded
+            extraFilter: c =>true
         );
 
         var card = chosen.FirstOrDefault();
@@ -58,6 +56,6 @@ public class ChronoLink : SpaceTimeWitchCards
 
     protected override void OnUpgrade()
     {
-        SetChronoMarkCost(1);
+        SetChronoMarkCost(0);
     }
 }

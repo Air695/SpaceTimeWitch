@@ -1,5 +1,6 @@
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -108,15 +109,13 @@ public static class EmotionDrawSystem
         for (var i = 0; i < priority.Length; i++)
             rank[priority[i]] = i;
 
-        var rng = new Random();
-
         return abnormalities
             .Select(c => (
                 card: c,
                 dist: ((IAbnormalityCard)c).Interval - playerInterval
             ))
             .OrderBy(x => rank.GetValueOrDefault(x.dist, int.MaxValue))
-            .ThenBy(_ => rng.Next())
+            .ThenBy(x => x.card.Id)
             .Select(x => x.card)
             .ToList();
     }
@@ -153,6 +152,7 @@ public static class EmotionDrawSystem
                         && c.Tags.Any(t => abnormalityTags.Contains(t) || request.TierTags.Contains(t))
                         && request.InterfaceType.IsInstanceOfType(c))
             .DistinctBy(c => c.Id)
+            .OrderBy(c => c.Id)
             .ToList();
 
         return pool;
@@ -182,6 +182,7 @@ public static class EmotionDrawSystem
 
     /// <summary>
     /// 升级后触发抽取。调用方应先执行 TryLevelUp，然后传入升级前的情感值。
+    /// 只在本地玩家执行 UI 和效果，效果通过延迟应用在 AfterPlayerTurnStart 同步到所有客户端。
     /// </summary>
     public static async Task<LevelUpDrawResult> PerformDraw(
         PlayerChoiceContext? ctx, Player player,
@@ -189,12 +190,14 @@ public static class EmotionDrawSystem
     {
         var result = new LevelUpDrawResult();
 
+        // 所有客户端同步执行
         var newLevel = EmotionSystem.GetLevel(player);
         result.Success = true;
         result.NewLevel = newLevel;
 
-        // 3. 合并所有情感遗物的标签族 → 每级固定抽取（4、5 级额外抽 EGO）
-        var allRelics = player.Relics.OfType<QGRelicBase>().ToList();
+        // 合并所有情感遗物的标签族 → 每级固定抽取（4、5 级额外抽 EGO）
+        var allRelics = player.Relics.OfType<QGRelicBase>()
+            .OrderBy(r => r.GetType().Name).ToList();
         var t1 = allRelics.Select(r => r.Tier1Tag).Distinct().ToList();
         var t2 = allRelics.Select(r => r.Tier2Tag).Distinct().ToList();
         var t3 = allRelics.Select(r => r.Tier3Tag).Distinct().ToList();
@@ -218,7 +221,7 @@ public static class EmotionDrawSystem
 
         var abnormalityTags = GetActiveAbnormalityTags(player);
 
-        // 4. 计算情感区间
+        // 计算情感区间
         var hpRatio = player.Creature.MaxHp > 0
             ? (double)player.Creature.CurrentHp / player.Creature.MaxHp
             : 0.5;
@@ -229,7 +232,7 @@ public static class EmotionDrawSystem
 
         if (requests.Count == 0) return result;
 
-        // 6. 执行每次抽取
+        // 执行每次抽取
         foreach (var request in requests)
         {
             var isAbnormality = request.InterfaceType == typeof(IAbnormalityCard);
@@ -254,10 +257,10 @@ public static class EmotionDrawSystem
 
             s_chosenThisCombat.Add(chosen.Id);
 
-            // 应用效果
+            // 应用效果（syncCtx 确保命令同步到所有客户端）
             if (isAbnormality && chosen is IAbnormalityCard abnormality)
             {
-                await abnormality.ApplyEffect(ctx, player);
+                await abnormality.ApplyEffect(ctx!, player);
                 result.ChosenAbnormalities.Add(chosen);
             }
             else if (chosen is IEGOCard)

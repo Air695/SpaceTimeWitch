@@ -39,7 +39,7 @@ public class BindingReturnPower : ModPowerTemplate
     }
 
     public override PowerAssetProfile AssetProfile => new(
-        IconPath: "res://images/SpaceTimeWitch/Powers/BindingReturnPower.png",
+        IconPath: null,
         BigIconPath: null
     );
 }

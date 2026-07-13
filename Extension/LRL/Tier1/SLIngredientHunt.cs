@@ -23,8 +23,8 @@ public class SLIngredientHunt : SpaceTimeWitchCards
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(16m,ValueProp.Move),
-        new PowerVar<STWBleed>(5m)
+        new DamageVar(15m,ValueProp.Move),
+        new PowerVar<STWBleed>(4m)
     ];
 
 
@@ -75,7 +75,7 @@ public class SLIngredientHunt : SpaceTimeWitchCards
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(4m);
+        DynamicVars.Damage.UpgradeValueBy(3m);
         DynamicVars["STWBleed"].UpgradeValueBy(2m);
     }
 
