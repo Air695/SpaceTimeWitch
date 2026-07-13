@@ -248,5 +248,11 @@
   "SPACE_TIME_WITCH_POWER_TSP.title": "Temporary Strength",
   "SPACE_TIME_WITCH_POWER_TTSP.description": "At the start of your next turn, gain Temporary Strength.",
   "SPACE_TIME_WITCH_POWER_TTSP.smartDescription": "At the start of your next turn, gain {Amount} Temporary Strength.",
-  "SPACE_TIME_WITCH_POWER_TTSP.title": "Next Turn Temporary Strength"
+  "SPACE_TIME_WITCH_POWER_TTSP.title": "Next Turn Temporary Strength",
+  "SPACE_TIME_WITCH_POWER_NO_SMOGGY.description": "Prevents Smoggy from spreading.",
+  "SPACE_TIME_WITCH_POWER_NO_SMOGGY.smartDescription": "Prevents Smoggy from spreading.",
+  "SPACE_TIME_WITCH_POWER_NO_SMOGGY.title": "Smog Aversion",
+  "SPACE_TIME_WITCH_POWER_NO_TAINTED.description": "Tainted received is reduced to 1/2.",
+  "SPACE_TIME_WITCH_POWER_NO_TAINTED.smartDescription": "Tainted received is reduced to 1/2.",
+  "SPACE_TIME_WITCH_POWER_NO_TAINTED.title": "Taint Aversion"
 }
