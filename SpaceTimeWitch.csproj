@@ -37,6 +37,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Content Include="LICENSE.txt" />
+      <Content Include="README.md" />
       <Content Include="SpaceTimeWitch.json" />
     </ItemGroup>
 
