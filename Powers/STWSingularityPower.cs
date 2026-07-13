@@ -35,12 +35,19 @@ public class STWSingularityPower : ModPowerTemplate
         PlayerChoiceContext choiceContext, Player player)
     {
         if (player.Creature != Owner) return;
-        if (Amount <= 0) return;
 
         // 奇点卡牌必须在手牌中
         var hand = PileType.Hand.GetPile(player);
         var token = hand.Cards.OfType<Cards.Token.STWSingularity>().FirstOrDefault();
         if (token == null) return;
+
+        // 卡牌次数为唯一真相来源，能力层数从卡牌同步
+        if (Amount != token.RemainingUses)
+        {
+            SetAmount(token.RemainingUses);
+        }
+
+        if (Amount <= 0) return;
 
         await TriggerOnce(choiceContext, player);
 
@@ -88,6 +95,7 @@ public class STWSingularityPower : ModPowerTemplate
         // 从构筑卡组中发现 1 张（展示卡组实例，保留升级等数值；选中后创建复制品入手牌）
         var deckCards = PileType.Deck.GetPile(player).Cards
             .DistinctBy(c => c.Id)
+            .OrderBy(c => c.Id)
             .OrderBy(_ => player.RunState.Rng.CombatCardGeneration.NextInt())
             .Take(3)
             .ToList();

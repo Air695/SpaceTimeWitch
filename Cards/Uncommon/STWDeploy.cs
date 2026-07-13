@@ -50,7 +50,7 @@ public class STWDeploy : SpaceTimeWitchCards
         else
         {
             var rng = owner.RunState.Rng.CombatCardGeneration;
-            offered = psCards.OrderBy(_ => rng.NextInt()).Take(3).ToList();
+            offered = psCards.OrderBy(c => c.Id).OrderBy(_ => rng.NextInt()).Take(3).ToList();
         }
 
         var chosen = (await CardSelectCmd.FromSimpleGrid(

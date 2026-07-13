@@ -10,7 +10,7 @@ namespace SpaceTimeWitch.Extension.QG;
 /// </summary>
 public static class EmotionSystem
 {
-    public static readonly int[] LevelCaps = [5, 5, 8, 11, 14, 0];
+    public static readonly int[] LevelCaps = [5, 5, 8, 11, 11, 0];
     public const int MaxLevel = 5;
 
     // ─── 读写 ───

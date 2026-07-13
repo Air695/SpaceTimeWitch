@@ -30,7 +30,7 @@ public class ChronoExtract : SpaceTimeWitchCards
 
     public ChronoExtract()
         : base(
-            baseCost: 1,
+            baseCost: 0,
             type: CardType.Skill,
             rarity: CardRarity.Uncommon,
             target: TargetType.Self

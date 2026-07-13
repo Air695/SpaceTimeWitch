@@ -52,6 +52,7 @@ public class STWGenesis : SpaceTimeWitchCards
             .Where(c => c.CanBeGeneratedInCombat && !excludedPoolIds.Contains(c.Id))
             .GroupBy(c => c.Id)
             .Select(g => g.First())
+            .OrderBy(c => c.Id)
             .ToList();
 
         if (allCards.Count == 0) return;

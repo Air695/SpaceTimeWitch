@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using SpaceTimeWitch.Commands;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.Entities.Cards;
 
 namespace SpaceTimeWitch.Powers;
 
@@ -34,20 +35,30 @@ public class STWEvolution : ModPowerTemplate
         if (player == null) return;
 
         var amt = Amount;
-        var psCards = PersonalSpaceCmd.GetCards(player)
+
+        var handCards = PileType.Hand.GetPile(player).Cards;
+        var drawCards = PileType.Draw.GetPile(player).Cards;
+        var discardCards = PileType.Discard.GetPile(player).Cards;
+        var psCards = PersonalSpaceCmd.GetCards(player);
+
+        var allCards = handCards
+            .Concat(drawCards)
+            .Concat(discardCards)
+            .Concat(psCards)
             .Where(c => c.CurrentUpgradeLevel < c.MaxUpgradeLevel)
+            .OrderBy(c => c.Id)
             .ToList();
 
-        if (psCards.Count == 0) return;
+        if (allCards.Count == 0) return;
 
         var rng = player.RunState.Rng.CombatCardGeneration;
-        var toUpgrade = Math.Min(amt, psCards.Count);
+        var toUpgrade = Math.Min(amt, allCards.Count);
 
         for (int i = 0; i < toUpgrade; i++)
         {
-            var card = rng.NextItem(psCards);
+            var card = rng.NextItem(allCards);
             CardCmd.Upgrade(card);
-            psCards.Remove(card);
+            allCards.Remove(card);
         }
     }
 

@@ -31,6 +31,7 @@ public class STWPlanB : SpaceTimeWitchCards, IPersonalSpaceSelfStore
             target: TargetType.Self
         )
     {
+        SetChronoMarkCost(1);
     }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [];
@@ -44,8 +45,7 @@ public class STWPlanB : SpaceTimeWitchCards, IPersonalSpaceSelfStore
             minCount: 0,
             maxCount: 1,
             prompt: new LocString("cards", "STW_DISCOVER_PROMPT"),
-            extraFilter: c => true,
-            sourceIsUpgraded: IsUpgraded
+            extraFilter: c => true
         );
 
         var card = chosen.FirstOrDefault();
@@ -56,5 +56,6 @@ public class STWPlanB : SpaceTimeWitchCards, IPersonalSpaceSelfStore
 
     protected override void OnUpgrade()
     {
+        SetChronoMarkCost(0);
     }
 }

@@ -48,7 +48,7 @@ public class SLFriendP : ModPowerTemplate
         _cardPlayed = false;
 
         var hand = PileType.Hand.GetPile(player);
-        var playableCards = hand.Cards.Where(c => c.CanPlay()).ToList();
+        var playableCards = hand.Cards.Where(c => c.CanPlay()).OrderBy(c => c.Id).ToList();
         if (playableCards.Count == 0) return;
 
         var rng = player.RunState.Rng.CombatCardGeneration;

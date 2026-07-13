@@ -1,0 +1,22 @@
+﻿{
+  "REPRODUCE.description": "Discover up to one card from a certain number of cards.",
+  "REPRODUCE.title": "Reproduce",
+  "FIELD.description": "A global effect, only one can be active at a time.",
+  "FIELD.title": "Field Card",
+  "LJSK.description": "Cards from the spacetime you are currently linked to will appear.",
+  "LJSK.title": "Linked Spacetime",
+  "FSK.description": "All cards will appear.",
+  "FSK.title": "Pan-Spacetime",
+  "SPACE_TIME_WITCH_KEYWORD_BINDING.description": "After being played, returns to your hand next turn.",
+  "SPACE_TIME_WITCH_KEYWORD_BINDING.title": "Binding",
+  "SPACE_TIME_WITCH_KEYWORD_COMBAT_SKILL.title": "Combat Skill",
+  "SPACE_TIME_WITCH_KEYWORD_COMBAT_SKILL.description": "Treats the effect as the specific effect, and performs the corresponding action on the target of the action.",
+  "SPACE_TIME_WITCH_KEYWORD_SOULBINDING.description": "After being played, returns to your hand.",
+  "SPACE_TIME_WITCH_KEYWORD_SOULBINDING.title": "Soulbinding",
+  "WXC.description": "Positive Emotion: Playing an attack card and dealing unblocked attack damage +1, winning a clash +2, completely blocking an attack +1, minion death +2, enemy death +5.\nNegative Emotion: Taking unblocked attack damage +1, losing a clash +2, summoned creature death +2, teammate death +5.\nHP additionally affects Abnormality extraction probability.",
+  "WXC.title": "Literature Floor",
+  "SPACE_TIME_WITCH_KEYWORD_INDIVIDUAL.description": "Compete with the target's single attack value; the winner deals damage equal to the difference and triggers the target's Bleed.",
+  "SPACE_TIME_WITCH_KEYWORD_INDIVIDUAL.title": "Individual",
+  "SPACE_TIME_WITCH_KEYWORD_SUMMATION.description": "Compete using total attack damage; if you win, deal damage equal to the difference. No Emotion gain or counter damage is received.",
+  "SPACE_TIME_WITCH_KEYWORD_SUMMATION.title": "Summation"
+}

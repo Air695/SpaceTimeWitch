@@ -58,12 +58,7 @@ public class STWSingularity : SpaceTimeWitchCards
 
     protected override void OnUpgrade()
     {
-        // 能力层数 +1，卡牌次数镜像同步（单一来源，避免双重递增）
-        var power = Owner?.Creature?.GetPower<Powers.STWSingularityPower>();
-        if (power != null)
-        {
-            power.SetAmount(power.Amount + 1);
-            RemainingUses = power.Amount;
-        }
+        // 次数 +1；能力层数由 STWSingularityPower 在回合开始时从卡牌同步
+        RemainingUses++;
     }
 }

@@ -24,6 +24,7 @@ public class STWChestplate3 : ModPowerTemplate
 
     public override async Task BeforeSideTurnEndEarly(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
+        if (side != Owner?.Side) return;
         await CreatureCmd.GainBlock(Owner, 12m, ValueProp.Unpowered, null);
     }
 }

@@ -45,7 +45,7 @@ public class QGEmotionAcquisition : ModPowerTemplate, IAttackHitHookListener
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext _, Player player)
     {
-        if (Owner == null || !EmotionSystem.HasQGRelic(player)) return;
+        if (Owner == null || Owner != player.Creature) return;
 
         if (_combatStarted)
         {
@@ -163,6 +163,7 @@ public class QGEmotionAcquisition : ModPowerTemplate, IAttackHitHookListener
     public override async Task BeforeSideTurnEnd(
         PlayerChoiceContext _, CombatSide side, IEnumerable<Creature> participants)
     {
+        if (side != CombatSide.Enemy) return;
         if (Owner == null) return;
         var player = Owner.Player;
         if (player == null || !EmotionSystem.HasQGRelic(player)) return;

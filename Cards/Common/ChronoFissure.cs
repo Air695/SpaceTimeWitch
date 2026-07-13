@@ -19,7 +19,7 @@ public class ChronoFissure : SpaceTimeWitchCards
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        SecondaryResourceVars.For("ChronoMark", ModChronoResources.Id, 3)
+        SecondaryResourceVars.For("ChronoMark", ModChronoResources.Id, 2)
     ];
 
     public ChronoFissure()

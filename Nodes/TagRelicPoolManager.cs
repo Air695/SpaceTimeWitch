@@ -1,3 +1,4 @@
+using System.Linq;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
@@ -48,6 +49,12 @@ public static class TagRelicPoolManager
             })
             .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
+        // 标签排序优先级：按 Tag 的 int 值升序
+        var tagSortOrder = activeTags
+            .OrderBy(t => (int)t)
+            .Select((tag, i) => (tag, i))
+            .ToDictionary(x => x.tag, x => x.i);
+
         // 从所有卡池筛选匹配卡牌（遵循解锁/多人游戏过滤，去重）
         var constraint = player.RunState.CardMultiplayerConstraint;
         var candidates = ModelDb.AllCardPools
@@ -56,6 +63,17 @@ public static class TagRelicPoolManager
                         || pickaxeTypeNames.Contains(c.GetType().Name))
             .GroupBy(c => c.Id)
             .Select(g => g.First())
+            .OrderBy(c =>
+            {
+                // 取卡牌匹配的标签中优先级最高的
+                var best = c.Tags
+                    .Where(t => tagSortOrder.ContainsKey(t))
+                    .Select(t => tagSortOrder[t])
+                    .DefaultIfEmpty(int.MaxValue)
+                    .Min();
+                return best;
+            })
+            .ThenBy(c => (int)c.Rarity)
             .ToList();
 
         // 创建可变副本并加入牌堆

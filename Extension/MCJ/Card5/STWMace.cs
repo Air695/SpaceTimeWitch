@@ -18,7 +18,7 @@ public class STWMace : SpaceTimeWitchCards
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(42m,ValueProp.Move)
+        new DamageVar(32m,ValueProp.Move)
     ];
 
 
@@ -49,7 +49,7 @@ public class STWMace : SpaceTimeWitchCards
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(8m);
+        DynamicVars.Damage.UpgradeValueBy(10m);
     }
 
     protected override string PortraitPath => $"res://images/Extension/Cards/{GetType().Name}.png";

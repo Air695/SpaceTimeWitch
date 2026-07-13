@@ -62,8 +62,7 @@ public class ChronoCollapse : SpaceTimeWitchCards
         token.RemainingUses = exhaustedCount;
         await CardPileCmd.AddGeneratedCardToCombat(token, PileType.Hand, creator: token.Owner);
 
-        // ── 4. 施加奇点能力 ──
-        await PowerCmd.Apply<Powers.STWSingularityPower>(choiceContext, owner.Creature, exhaustedCount, owner.Creature, this);
+        // ── 4. 奇点能力已由 SingularityPowerPatch 在 AddGeneratedCardToCombat 时自动施加 ──
 
         // ── 5. 已升级 → 立即触发一次（消耗次数）──
         if (IsUpgraded)

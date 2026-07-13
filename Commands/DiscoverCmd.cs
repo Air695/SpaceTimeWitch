@@ -71,8 +71,7 @@ public static class DiscoverCmd
         })
         .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
-    // 筛选匹配的卡（标签 + 镐类绑定类名）
-    var rng = player.RunState.Rng.Niche;
+    // 筛选匹配的卡（标签 + 镐类绑定类名），按 ID 确定性排序防止多人不同步
     var pool = ModelDb.AllCardPools
         .SelectMany(p => p.GetUnlockedCards(
             player.UnlockState,
@@ -83,26 +82,39 @@ public static class DiscoverCmd
                     && (cardType == null || c.Type == cardType)
                     && (extraFilter == null || extraFilter(c)))
         .DistinctBy(c => c.Id)
+        .OrderBy(c => c.Id)
         .ToList();
 
     if (pool.Count == 0) return [];
 
-    // 按稀有度加权随机选 N 张，不足时从剩余池补足
-    var weights = rarityWeights ?? GetConfiguredRarityWeights();
+    // 使用战斗共享 RNG 洗牌一次（synced across players）
+    var rng = player.RunState.Rng.CombatCardGeneration;
     var shuffled = pool.OrderBy(_ => rng.NextInt()).ToList();
-    var byRarity = shuffled.GroupBy(c => c.Rarity).ToList();
 
-    var weighted = new List<CardModel>();
-    foreach (var g in byRarity)
+    // 按稀有度加权取卡
+    var weights = rarityWeights ?? GetConfiguredRarityWeights();
+    var byRarity = new Dictionary<CardRarity, List<CardModel>>();
+    foreach (var c in shuffled)
     {
-        var w = weights.TryGetValue(g.Key, out var v) ? v : 0;
-        var take = (int)Math.Round(offerCount * w);
-        weighted.AddRange(g.Take(take));
+        if (!byRarity.ContainsKey(c.Rarity))
+            byRarity[c.Rarity] = new List<CardModel>();
+        byRarity[c.Rarity].Add(c);
     }
 
-    // 各稀有度配额可能凑不满 offerCount，从剩余卡中补齐
-    var remaining = shuffled.Except(weighted).OrderBy(_ => rng.NextInt());
-    weighted.AddRange(remaining.Take(offerCount - weighted.Count));
+    var weighted = new List<CardModel>();
+    foreach (var kv in byRarity)
+    {
+        var w = weights.TryGetValue(kv.Key, out var v) ? v : 0;
+        var take = (int)Math.Round(offerCount * w);
+        weighted.AddRange(kv.Value.Take(take));
+    }
+
+    // 不足时从剩余卡中补齐
+    if (weighted.Count < offerCount)
+    {
+        var remaining = shuffled.Except(weighted);
+        weighted.AddRange(remaining.Take(offerCount - weighted.Count));
+    }
 
     var choices = weighted
         .Take(offerCount)

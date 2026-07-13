@@ -38,7 +38,7 @@ public class STWBoots3 : ModPowerTemplate
         {
             return 0m;
         }
-        return 5m;
+        return 4m;
     }
 
 }

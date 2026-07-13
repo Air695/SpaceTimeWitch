@@ -19,7 +19,13 @@ public static class PersonalSpaceCmd
     {
         if (player.PlayerCombatState == null) return;
 
-        await CardPileCmd.Add(card, PileType.Discard);
+        // 如果卡牌当前不在弃牌堆，先移入弃牌堆清除手牌/抽牌堆的视觉残留
+        if (card.Pile?.Type != PileType.Discard)
+        {
+            await CardPileCmd.Add(card, PileType.Discard);
+        }
+
+        // 从弃牌堆（或原本就在弃牌堆）移入个人空间
         await CardPileCmd.Add(card, Entry.PersonalSpacePile, skipVisuals: true);
         Entry.PersonalSpacePile.GetPile(player).InvokeCardAddFinished();
 

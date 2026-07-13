@@ -25,7 +25,6 @@ public class STWSolidify : ModPowerTemplate, ISecondaryResourceHookListener
         if (context.NewAmount <= context.OldAmount) return; // 不是获得
         if (context.Player.Creature != Owner) return;
 
-        Flash();
         var gained = context.NewAmount - context.OldAmount;
         var totalBlock = Amount * gained;
         await CreatureCmd.GainBlock(Owner, totalBlock, ValueProp.Unpowered, null);

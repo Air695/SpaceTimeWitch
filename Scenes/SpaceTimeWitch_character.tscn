@@ -6,12 +6,13 @@
 
 [node name="Visuals" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-2.0000005, -152)
-scale = Vector2(0.28004688, 0.28005856)
+position = Vector2(-4.5098724, -157.10194)
+scale = Vector2(0.28585678, 0.2883275)
 texture = ExtResource("1_b0cp3")
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -96.0

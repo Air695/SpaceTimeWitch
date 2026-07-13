@@ -55,6 +55,7 @@ public class STWFate : SpaceTimeWitchCards
 
         var allCards = ModelDb.AllCards
             .Where(c => c.CanBeGeneratedInCombat && !excludedPoolIds.Contains(c.Id))
+            .OrderBy(c => c.Id)
             .ToList();
 
         if (allCards.Count == 0) return;

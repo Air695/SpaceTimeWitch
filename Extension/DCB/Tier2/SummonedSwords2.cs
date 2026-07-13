@@ -20,7 +20,7 @@ public class SummonedSwords2 : SpaceTimeWitchCards
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(2m,ValueProp.Move),
+        new DamageVar(5m,ValueProp.Move),
         new CardsVar(3)
     ];
     
@@ -62,7 +62,7 @@ public class SummonedSwords2 : SpaceTimeWitchCards
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(-2m);
+        DynamicVars.Damage.UpgradeValueBy(-1m);
         DynamicVars.Cards.UpgradeValueBy(1);
     }
 

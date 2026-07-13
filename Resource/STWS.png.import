@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8ivwe4yckohu"
-path="res://.godot/imported/Gemini_Generated_Image_otsqpdotsqpdotsq.png-5e2380eb6f0f21cee0ea19e51f494f80.ctex"
+uid="uid://x5uaxfsbid87"
+path="res://.godot/imported/STWS.png-9ac06274b62955427bd4da19889f8960.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/SpaceTimeWitch/Powers/Gemini_Generated_Image_otsqpdotsqpdotsq.png"
-dest_files=["res://.godot/imported/Gemini_Generated_Image_otsqpdotsqpdotsq.png-5e2380eb6f0f21cee0ea19e51f494f80.ctex"]
+source_file="res://Resource/STWS.png"
+dest_files=["res://.godot/imported/STWS.png-9ac06274b62955427bd4da19889f8960.ctex"]
 
 [params]
 

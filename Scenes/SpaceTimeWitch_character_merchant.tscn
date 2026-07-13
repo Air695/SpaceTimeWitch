@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://pdy0teckf4i"]
 
-[ext_resource type="Texture2D" uid="uid://bxmjqt7axiic" path="res://testresource/320_320.jpg" id="1_hd2r6"]
+[ext_resource type="Texture2D" uid="uid://x5uaxfsbid87" path="res://Resource/STWS.png" id="1_hd2r6"]
 
 [node name="IroncladMerchant" type="Node2D"]
 
 [node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(-1.0000076, -174.5)
-scale = Vector2(0.11315417, 0.1075)
+position = Vector2(-16.374996, -238.12503)
+scale = Vector2(0.48292828, 0.47143435)
 texture = ExtResource("1_hd2r6")

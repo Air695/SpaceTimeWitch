@@ -42,7 +42,8 @@ public static class WeightedCardSelectCmd
             .SelectMany(p => p.GetUnlockedCards(
                 player.UnlockState,
                 player.RunState.CardMultiplayerConstraint))
-            .Distinct();
+            .Distinct()
+            .OrderBy(c => c.Id);
 
         return await PickFromCards(context, player, allCards,
             offerCount, prompt, rng,
@@ -112,6 +113,7 @@ public static class WeightedCardSelectCmd
                 && c.Rarity != CardRarity.Ancient
                 && c.Rarity != CardRarity.Event)
             .Distinct()
+            .OrderBy(c => c.Id)
             .ToList();
 
         if (cards.Count == 0)

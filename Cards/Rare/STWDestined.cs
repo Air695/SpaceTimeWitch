@@ -24,7 +24,7 @@ public class STWDestined : SpaceTimeWitchCards
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        SecondaryResourceVars.For("ChronoMark", ModChronoResources.Id, 4m)
+        SecondaryResourceVars.For("ChronoMark", ModChronoResources.Id, 3m)
     ];
 
     public STWDestined()
