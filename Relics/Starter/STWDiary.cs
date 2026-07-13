@@ -1,18 +1,17 @@
-using System.Linq;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Monsters;
 using MegaCrit.Sts2.Core.Saves.Runs;
-using SpaceTimeWitch.Cards;
 using SpaceTimeWitch.Character;
 using SpaceTimeWitch.Commands;
 using SpaceTimeWitch.Powers;
 using SpaceTimeWitch.Scripts;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization;
 
 namespace SpaceTimeWitch.Relics.Starter;
 
@@ -24,7 +23,15 @@ public class STWDiary : SpaceTimeWitchRelics
         : base(RelicRarity.Starter)
     {
     }
-
+    
+    protected override IEnumerable<IHoverTip> CustomHoverTips =>
+    [
+        new HoverTip(
+            new LocString("relics", "STW_DIARY_T"),
+            new LocString("relics", "STW_DIARY_D")
+        ),
+    ];
+    
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DynamicVar("ChronoMark", 3m),
