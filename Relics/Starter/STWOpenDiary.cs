@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
@@ -13,6 +11,8 @@ using SpaceTimeWitch.Powers;
 using SpaceTimeWitch.Scripts;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization;
 
 namespace SpaceTimeWitch.Relics.Starter;
 
@@ -23,6 +23,14 @@ public class STWOpenDiary : SpaceTimeWitchRelics
     [
         new DynamicVar("ChronoMark", 3m),
         new DynamicVar("ChronoMarkPerTurn", 1m),
+    ];
+    
+    protected override IEnumerable<IHoverTip> CustomHoverTips =>
+    [
+        new HoverTip(
+            new LocString("relics", "STW_DIARY_T"),
+            new LocString("relics", "STW_DIARY_D")
+        ),
     ];
 
     public STWOpenDiary() : base(RelicRarity.Starter) { }
