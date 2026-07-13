@@ -18,8 +18,8 @@ public class SLLaetitiaP : ModPowerTemplate
     public override PowerStackType StackType => PowerStackType.Single;
 
     public override PowerAssetProfile AssetProfile => new(
-        IconPath: $"res://images/Extension/Powers/{GetType().Name}.png",
-        BigIconPath: $"res://images/Extension/Powers/{GetType().Name}.png"
+        IconPath: $"res://images/Extension/Powers/SLGift.png",
+        BigIconPath: $"res://images/Extension/Powers/SLGift.png"
     );
 
     // ── 攻击伤害降为 1 ──

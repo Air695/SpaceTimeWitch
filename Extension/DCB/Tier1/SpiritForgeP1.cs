@@ -29,8 +29,6 @@ public class SpiritForgeP1 : ModPowerTemplate
         if (cardPlay.Card is STWMirageBlades) return;
         if (cardPlay.Card.Type != CardType.Attack) return;
 
-        Flash();
-
         var blade = (STWMirageBlades)Owner.CombatState.CreateCard<STWMirageBlades>(Owner.Player);
         await CardPileCmd.AddGeneratedCardToCombat(blade, PileType.Hand, creator: blade.Owner);
     }
