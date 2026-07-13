@@ -30,6 +30,9 @@ public static class RelicHoverTipsPatch
 
         if (__instance is SpaceTimeWitchRelics stwRelic)
         {
+            // 自定义悬浮提示
+            list.AddRange(stwRelic.ExposedCustomHoverTips);
+
             // QG 遗物：标签提示
             if (__instance is IQGRelic qgRelic)
             {

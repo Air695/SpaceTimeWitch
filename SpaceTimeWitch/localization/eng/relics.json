@@ -50,5 +50,7 @@
   "SPACE_TIME_WITCH_RELIC_STW_TOTEM_UNDYING.title": "Totem of Undying",
   "SPACE_TIME_WITCH_RELIC_STW_WOODEN_PICKAXE.description": "Unlocks crafting options at Rest Sites. At the end of combat, gain 2 materials.\nCurrent materials: {Materials}.\nUpgrades after {UpgradeProgress} battles.",
   "SPACE_TIME_WITCH_RELIC_STW_WOODEN_PICKAXE.flavor": "Stone Age",
-  "SPACE_TIME_WITCH_RELIC_STW_WOODEN_PICKAXE.title": "Wooden Pickaxe"
+  "SPACE_TIME_WITCH_RELIC_STW_WOODEN_PICKAXE.title": "Wooden Pickaxe",
+  "STW_DIARY_T": "Special Target List",
+  "STW_DIARY_D": "Living Fog: Prevents Smoggy from spreading.\nInfested Prism: Tainted received is reduced to 1/2."
 }

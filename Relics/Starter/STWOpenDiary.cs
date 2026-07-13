@@ -6,8 +6,10 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Monsters;
 using SpaceTimeWitch.Character;
 using SpaceTimeWitch.Commands;
+using SpaceTimeWitch.Powers;
 using SpaceTimeWitch.Scripts;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -28,7 +30,25 @@ public class STWOpenDiary : SpaceTimeWitchRelics
     public override async Task BeforeCombatStart()
     {
         Flash();
+
+        // 预见特定敌人：施加对应防护能力
+        await ApplyForesightPowers();
+
         await ChronoMark.Gain(Owner.Creature, (int)DynamicVars["ChronoMark"].BaseValue);
+    }
+
+    private async Task ApplyForesightPowers()
+    {
+        if (Owner?.Creature == null) return;
+        var enemies = Owner.Creature.CombatState.Enemies;
+        var hasLivingFog = enemies.Any(e => e.Monster is LivingFog);
+        var hasInfestedPrism = enemies.Any(e => e.Monster is InfestedPrism);
+
+        if (hasLivingFog)
+            await PowerCmd.Apply<NoSmoggy>(null!, Owner.Creature, 1, Owner.Creature, null);
+
+        if (hasInfestedPrism)
+            await PowerCmd.Apply<NoTainted>(null!, Owner.Creature, 1, Owner.Creature, null);
     }
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext ctx, Player player)
