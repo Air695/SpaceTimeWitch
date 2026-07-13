@@ -15,8 +15,8 @@ public class SLSanguineDesireP : ModPowerTemplate
     public override PowerStackType StackType => PowerStackType.Single;
 
     public override PowerAssetProfile AssetProfile => new(
-        IconPath: $"res://images/Extension/Powers/{GetType().Name}.png",
-        BigIconPath: $"res://images/Extension/Powers/{GetType().Name}.png"
+        IconPath: $"res://images/Extension/Powers/XX.png",
+        BigIconPath: $"res://images/Extension/Powers/XX.png"
     );
 
     public override async Task BeforeSideTurnStart(

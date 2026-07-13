@@ -20,8 +20,8 @@ public class STWSingularityPower : ModPowerTemplate
     public override PowerStackType StackType => PowerStackType.Counter;
 
     public override PowerAssetProfile AssetProfile => new(
-        IconPath: $"res://images/SpaceTimeWitch/Powers/{GetType().Name}.png",
-        BigIconPath: $"res://images/SpaceTimeWitch/Powers/{GetType().Name}.png"
+        IconPath: null,
+        BigIconPath: null
     );
 
     protected override bool IsVisibleInternal => false;
