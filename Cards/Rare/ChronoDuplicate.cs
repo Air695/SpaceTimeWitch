@@ -33,7 +33,7 @@ public class ChronoDuplicate : SpaceTimeWitchCards
         SetChronoMarkCost(1);
     }
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay play)
     {

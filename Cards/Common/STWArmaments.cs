@@ -1,15 +1,15 @@
-﻿using MegaCrit.Sts2.Core.Commands;
+﻿using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using SpaceTimeWitch.Character;
-using SpaceTimeWitch.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 
-namespace SpaceTimeWitch.Cards.Uncommon;
+namespace SpaceTimeWitch.Cards.Common;
 
 [RegisterCard(typeof(SpaceTimeWitchCardPool))]
-public class ChronoErupt : SpaceTimeWitchCards
+public class STWArmaments : SpaceTimeWitchCards
 {
     protected override HashSet<CardTag> CanonicalTags =>
     [
@@ -17,18 +17,18 @@ public class ChronoErupt : SpaceTimeWitchCards
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<STWErupt>(3m)
+        new CardsVar(2)
     ];
 
-
-    public ChronoErupt()
+    public STWArmaments()
         : base(
-            baseCost: 1,
-            type: CardType.Power,
-            rarity: CardRarity.Uncommon,
+            baseCost:0,
+            type: CardType.Skill,
+            rarity: CardRarity.Common,
             target: TargetType.Self
         )
     {
+        SetChronoMarkCost(1);
     }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [];
@@ -37,13 +37,24 @@ public class ChronoErupt : SpaceTimeWitchCards
     {
         var owner = Owner;
         if (owner?.Creature == null) return;
-        
-        var amount = DynamicVars["STWErupt"].IntValue;
-        await PowerCmd.Apply<STWErupt>(choiceContext, owner.Creature, amount,owner.Creature,this);
+
+        var count = DynamicVars.Cards.IntValue;
+
+        var selected = await CardSelectCmd.FromHand(
+            prefs: new CardSelectorPrefs(SharedChooseCardPrompt, 0, count),
+            context: choiceContext,
+            player: owner,
+            filter: c => c.IsUpgradable,
+            source: this);
+
+        foreach (var card in selected)
+        {
+            CardCmd.Upgrade(card);
+        }
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars["STWErupt"].UpgradeValueBy(1);
+        DynamicVars.Cards.UpgradeValueBy(1);
     }
 }
