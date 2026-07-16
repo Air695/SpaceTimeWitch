@@ -16,8 +16,8 @@ public class SpiritForgeP2 : ModPowerTemplate
     public override PowerStackType StackType => PowerStackType.Single;
 
     public override PowerAssetProfile AssetProfile => new(
-        IconPath: "res://Images/Extension/Powers/SpiritForgeP.png",
-        BigIconPath: "res://Images/Extension/Powers/SpiritForgeP.png"
+        IconPath: "res://images/Extension/Powers/SpiritForgeP.png",
+        BigIconPath: "res://images/Extension/Powers/SpiritForgeP.png"
     );
 
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)

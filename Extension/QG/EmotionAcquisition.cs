@@ -80,7 +80,7 @@ public class QGEmotionAcquisition : ModPowerTemplate, IAttackHitHookListener
         Creature? dealer, CardModel? cardSource)
     {
         if (target == null || dealer == null || Owner == null) return 0m;
-        if (!props.IsPoweredAttack()) return 0m;
+        if (!props.IsCardOrMonsterMove()) return 0m;
         var player = Owner.Player;
         if (player == null || !EmotionSystem.HasQGRelic(player)) return 0m;
 

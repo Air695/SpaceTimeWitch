@@ -43,13 +43,18 @@ public class ChronoSever : SpaceTimeWitchCards
         if (owner?.Creature == null) return;
         
         ArgumentNullException.ThrowIfNull(play.Target, "cardPlay.Target");
+        var target = play.Target!;
+
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
-            .Targeting(play.Target!)
+            .Targeting(target)
             .Execute(choiceContext);
-        
+
         var markAmount = DynamicVars["ChronoMark"].IntValue;
         await ChronoMark.Gain(owner.Creature, markAmount);
+
+        if (target.IsDead)
+            await ChronoMark.Gain(owner.Creature, markAmount);
     }
 
     protected override void OnUpgrade()

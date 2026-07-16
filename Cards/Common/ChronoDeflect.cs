@@ -19,7 +19,7 @@ public class ChronoDeflect : SpaceTimeWitchCards
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(10m, ValueProp.Move),
+        new BlockVar(9m, ValueProp.Move),
         new PowerVar<STWDeflect>(1m)
     ];
 

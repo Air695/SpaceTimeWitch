@@ -27,8 +27,8 @@ public class RiftPotion : ModPotionTemplate
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromCard<InstantRift>()];
 
     public override PotionAssetProfile AssetProfile => new(
-        ImagePath: "res://images/SpaceTimeWitch/RiftPotion.png",
-        OutlinePath: "res://images/SpaceTimeWitch/RiftPotion.png"
+        ImagePath: "res://images/SpaceTimeWitch/Potions/RiftPotion.png",
+        OutlinePath: "res://images/SpaceTimeWitch/Potions/RiftPotion.png"
     );
 
     protected override async Task OnUse(PlayerChoiceContext choiceContext, Creature? target)

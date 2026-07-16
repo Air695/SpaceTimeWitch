@@ -14,6 +14,7 @@ public class ChronoDestructiveExtraction : SpaceTimeWitchCards
 {
     protected override HashSet<CardTag> CanonicalTags =>
     [
+        CardTags.MarkA
     ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>

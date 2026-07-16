@@ -1,23 +1,25 @@
-﻿using MegaCrit.Sts2.Core.Combat;
+﻿using Godot;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Rooms;
 using STS2RitsuLib.Cards.DynamicVars;
+using STS2RitsuLib.Combat.HealthBars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace SpaceTimeWitch.Extension.Powers;
 
 [RegisterPower]
-public class STWDestinedDeath : ModPowerTemplate
+public class STWDestinedDeath : ModPowerTemplate, IHealthBarForecastSource
 {
 
     public override PowerType Type => PowerType.Debuff;
 
     public override PowerStackType StackType => PowerStackType.Counter;
-    
+
     public override async Task AfterSideTurnStart(
         CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
@@ -43,7 +45,7 @@ public class STWDestinedDeath : ModPowerTemplate
         if (isBoss) return 0.03m;
         return 0.06m;
     }
-    
+
     private decimal GetPercentageDisplay()
     {
         if (Owner?.CombatState == null) return 4m;
@@ -59,7 +61,20 @@ public class STWDestinedDeath : ModPowerTemplate
     [
         new ComputedDynamicVar("Pct", 4m, _ => GetPercentageDisplay())
     ];
-    
+
+    public IEnumerable<HealthBarForecastSegment> GetHealthBarForecastSegments(HealthBarForecastContext context)
+    {
+        var amount = (int)Amount;
+        if (amount <= 0) return [];
+
+        var pct = GetPercentage();
+        var reduction = (int)(context.Creature.MaxHp * pct * amount);
+        if (reduction <= 0) return [];
+
+        return HealthBarForecasts.Single(reduction,
+            new Color(0.1f, 0.1f, 0.1f),
+            HealthBarForecastGrowthDirection.FromLeft);
+    }
 
     public override PowerAssetProfile AssetProfile => new(
         IconPath: $"res://images/Extension/Powers/{GetType().Name}.png",

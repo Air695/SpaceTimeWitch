@@ -26,8 +26,6 @@ public class ChronoRecall : SpaceTimeWitchCards
         new CardsVar(1)
     ];
 
-    // ChronoMark cost: 1 (free when upgraded, cleared in OnUpgrade)
-
     public ChronoRecall()
         : base(
             baseCost: 0,
@@ -65,12 +63,10 @@ public class ChronoRecall : SpaceTimeWitchCards
 
         if (selected.Any())
         {
-            // ���Ը��˿ռ�Ŀ���ͨ�� Retrieve �Ƴ����Ѻ����������߼���
             var fromPs = selected.Where(c => psCards.Contains(c)).ToList();
             foreach (var card in fromPs)
                 await PersonalSpaceCmd.Retrieve(Owner, card);
 
-            // ���������ƶѵĿ���ֱ�Ӽ�������
             var fromOther = selected.Except(fromPs).ToList();
             if (fromOther.Any())
                 await CardPileCmd.Add(fromOther, PileType.Hand);
@@ -79,6 +75,7 @@ public class ChronoRecall : SpaceTimeWitchCards
 
     protected override void OnUpgrade()
     {
-        this.SecondaryCosts().Clear(ModChronoResources.Id);
+        SetChronoMarkCost(2);
+        RemoveKeyword(CardKeyword.Exhaust);
     }
 }
